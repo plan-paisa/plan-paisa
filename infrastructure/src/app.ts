@@ -19,7 +19,7 @@ const props: StackProps = {
 
 // TODO - To be pointed to build folder of web site
 const webSiteStack = new WebSiteStack(app, 'PlanPaisaWebSiteStack', {
-	deployAssetPath: '../modules/web/site',
+	deployAssetPath: '../modules/web/site/dump',
 	stackName: `${config.getAudience()}-plan-paisa-web-site`,
 	webSiteBucketName: config.getResources().s3Bucket.webSite,
 	...props
