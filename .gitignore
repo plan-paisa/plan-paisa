@@ -5,22 +5,14 @@ npm-debug.log*
 
 # Editors
 .metadata/
+.vscode/
 .project
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
 
 # Coverage directory used by tools like istanbul
 coverage
 
 # nyc test coverage
 .nyc_output
-
-# Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
 
 # Dependency directories
 node_modules/

@@ -1,11 +1,8 @@
 {
-  "name": "@plan-paisa/parent",
+  "name": "plan-paisa",
   "version": "1.0.0",
   "description": "Mono repository for plan paisa application",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plan-paisa/plan-paisa.git"
