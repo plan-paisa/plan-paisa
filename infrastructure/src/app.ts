@@ -2,6 +2,7 @@ import cdk = require('@aws-cdk/core');
 import { Config } from './Config';
 import { WebStack } from './WebStack';
 import { WebSiteStack } from '../../modules/web/infra/src';
+import { HostedZoneStack } from './HostedZoneStack';
 
 interface StackProps extends cdk.StackProps {
 	audience: string;
@@ -16,6 +17,12 @@ const props: StackProps = {
 		region: config.getAwsRegion()
 	}
 };
+const hostedZoneStack = new HostedZoneStack(app, 'PlanPaisaHostedZoneStack', {
+	baseDomainName: config.getProperty('BASE_DOMAIN_NAME'),
+	stackName: `plan-paisa-hosted-zone`,
+	...props
+});
+config.addTags(hostedZoneStack);
 
 // TODO - To be pointed to build folder of web site
 const webSiteStack = new WebSiteStack(app, 'PlanPaisaWebSiteStack', {
@@ -27,8 +34,10 @@ const webSiteStack = new WebSiteStack(app, 'PlanPaisaWebSiteStack', {
 config.addTags(webSiteStack);
 
 const webStack = new WebStack(app, 'PlanPaisaWebStack', {
+	baseDomainName: config.getProperty('BASE_DOMAIN_NAME'),
 	originAccessIdentityId: webSiteStack.getCfOriginAccessIdRef(),
 	stackName: `${config.getAudience()}-plan-paisa-web`,
+	subDomainName: config.getSubDomainName(),
 	webSiteBucketName: config.getResources().s3Bucket.webSite,
 	...props
 });

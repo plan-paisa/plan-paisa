@@ -31,6 +31,10 @@ export class Config {
         return this.props[key];
     }
 
+    getSubDomainName(): string {
+        return ('master' === this.audience) ? '' : `${this.audience}.`;
+    }
+
     getResources() {
         return {
             s3Bucket: {

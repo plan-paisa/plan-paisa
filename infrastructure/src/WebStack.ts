@@ -1,23 +1,32 @@
+import { CloudFrontTarget } from '@aws-cdk/aws-route53-targets';
+import acm = require('@aws-cdk/aws-certificatemanager');
 import cdk = require('@aws-cdk/core');
-import iam = require('@aws-cdk/aws-iam');
 import cf = require('@aws-cdk/aws-cloudfront');
+import route53 = require('@aws-cdk/aws-route53');
 import s3 = require('@aws-cdk/aws-s3');
-import s3Deploy = require('@aws-cdk/aws-s3-deployment');
 
 export interface WebStackProps extends cdk.StackProps {
   audience: string;
+  baseDomainName: string;
   originAccessIdentityId: string;
+  subDomainName: string;
   webSiteBucketName: string;
 }
 export class WebStack extends cdk.Stack {
 
+  private domainName: string;
   private logBucket: s3.Bucket;
+  private hostedZone: route53.HostedZone;
+  private webDistribution: cf.CloudFrontWebDistribution;
 
   constructor(scope: cdk.Construct, id: string, private readonly props: WebStackProps) {
     super(scope, id, props);
 
+    this.domainName = `${this.props.subDomainName}${this.props.baseDomainName}`;
     this.createLogBucket();
-    this.createWebDistribution();
+    this.hostedZone = this.getHostedZone();
+    this.webDistribution = this.createWebDistribution();
+    this.createRoute53ARecord();
   }
 
   private createLogBucket() {
@@ -28,11 +37,27 @@ export class WebStack extends cdk.Stack {
     })
   }
 
-  private createWebDistribution() {
+  private getHostedZone(): any {
+    return route53.HostedZone.fromLookup(this, 'PlanPaisaHostedZone', {
+      domainName: this.props.baseDomainName,
+      privateZone: false
+    });
+  }
+
+  private createWebDistribution(): cf.CloudFrontWebDistribution {
     const { originAccessIdentityId, webSiteBucketName } = this.props;
     const s3BucketSource = s3.Bucket.fromBucketName(this, 'PlanPaisaWebSiteBucketRef', webSiteBucketName);
+    const certificate = new acm.DnsValidatedCertificate(this, 'PlanPaisaDomainCertificate', {
+      domainName: this.domainName,
+      hostedZone: this.hostedZone,
+      region: 'us-east-1'
+    });
 
-    new cf.CloudFrontWebDistribution(this, 'PlanPaisaWebDistribution', {
+    return new cf.CloudFrontWebDistribution(this, 'PlanPaisaWebDistribution', {
+      aliasConfiguration: {
+        acmCertRef: certificate.certificateArn,
+        names: [this.domainName]
+      },
       comment: `Plan Paisa CF fro Public site and API's`,
       loggingConfig: {
         bucket: this.logBucket
@@ -55,6 +80,16 @@ export class WebStack extends cdk.Stack {
         }]
       }],
       viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+    })
+  }
+
+  private createRoute53ARecord() {
+    new route53.ARecord(this, 'PlanPaisaWebDistributionARecord', {
+      zone: route53.HostedZone.fromHostedZoneAttributes(this, 'PlanPaisaAudienceHostedZone', {
+        hostedZoneId: this.hostedZone.hostedZoneId,
+        zoneName: this.domainName
+      }),
+      target: route53.RecordTarget.fromAlias(new CloudFrontTarget(this.webDistribution))
     })
   }
 }
