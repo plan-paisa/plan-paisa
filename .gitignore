@@ -1,27 +1,30 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-
-# Editors
+# code editors
 .metadata/
 .vscode/
 .project
 
-# Coverage directory used by tools like istanbul
+# testing coverage directory used by tools like istanbul
 coverage
+
+# dependency directories
+node_modules/
+
+# dump files
+.DS_Store
+
+# eslint cache
+.eslintcache
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# npm cache directory
+.npm
 
 # nyc test coverage
 .nyc_output
 
-# Dependency directories
-node_modules/
-
-# TypeScript v1 declaration files
+# typeScript v1 declaration files
 typings/
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
