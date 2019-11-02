@@ -24,9 +24,8 @@ const hostedZoneStack = new HostedZoneStack(app, 'PlanPaisaHostedZoneStack', {
 });
 config.addTags(hostedZoneStack);
 
-// TODO - To be pointed to build folder of web site
 const webSiteStack = new WebSiteStack(app, 'PlanPaisaWebSiteStack', {
-	deployAssetPath: '../modules/web/site/dump',
+	deployAssetPath: '../modules/web/site/build',
 	stackName: `${config.getAudience()}-plan-paisa-web-site`,
 	webSiteBucketName: config.getResources().s3Bucket.webSite,
 	...props

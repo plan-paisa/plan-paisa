@@ -4,6 +4,7 @@
   "description": "Mono repository for plan paisa application",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd modules/web/site && npm i",
     "compile": "tsc",
     "watch": "tsc -w",
     "test": "jest"

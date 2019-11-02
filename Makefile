@@ -12,10 +12,6 @@ ifndef AWS_REGION
 	export AWS_REGION := eu-west-1
 endif
 
-ifndef TARGET_ENV
-	export TARGET_ENV := DEV
-endif
-
 ifndef AUDIENCE
 	export AUDIENCE := dev
 endif
@@ -65,13 +61,13 @@ cdk-destroy:
 nuke: nuke-node-modules nuke-artifacts nuke-logs nuke-cdk
 
 nuke-locks: nuke
-	find . -type d -name node_modules -exec rm -rf {} +
+	find . -type f -name package-lock.json -exec rm -rf {} +
 
 nuke-node-modules:
 	find . -type d -name node_modules -exec rm -rf {} +
 
 nuke-artifacts:
-	find . -type f -name package-lock.json -exec rm -rf {} +
+	find . -type d -name build -exec rm -rf {} +
 
 nuke-logs:
 	find . -type f -name *-debug.log -exec rm -rf {} +
@@ -84,11 +80,15 @@ nuke-cdk:
 install:
 	npm ci
 	
-validate:
-	npm run validate
+start:
+	cd modules/web/site && npm run start
 	
+# To be updated once we have other modules to test
 test:
-	npm run test
-	
+	cd modules/web/site && npm run test
+
+# To be updated once we have other modules to package
 package:
-	npm run package
+	cd modules/web/site && npm run build
+	
+pipeline: install package deploy

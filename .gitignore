@@ -3,7 +3,7 @@
 .vscode/
 .project
 
-# coverage directory used by tools like istanbul
+# testing coverage directory used by tools like istanbul
 coverage
 
 # dependency directories
