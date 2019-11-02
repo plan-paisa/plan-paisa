@@ -1,0 +1,17 @@
+.img-blog-1 {
+    background: url(./images/blog-1.jpg);
+    height: 220px;
+    width: 360px;
+}
+
+.img-blog-2 {
+    background: url(./images/blog-2.jpg);
+    height: 220px;
+    width: 360px;
+}
+
+.img-blog-3 {
+    background: url(./images/blog-3.jpg);
+    height: 220px;
+    width: 360px;
+}

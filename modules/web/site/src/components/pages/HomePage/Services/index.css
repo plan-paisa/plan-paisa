@@ -1,0 +1,23 @@
+.img-financial-planning-service {
+    background: url(./images/financial-planning.jpg);
+    height: 154px;
+    width: 268px;
+}
+
+.img-tax-planning-service {
+    background: url(./images/tax-planning.jpg);
+    height: 154px;
+    width: 268px;
+}
+
+.img-insurance-consultancy-service {
+    background: url(./images/insurance-consultancy.jpg);
+    height: 154px;
+    width: 268px;
+}
+
+.img-retirement-planning-service {
+    background: url(./images/retirement-planning.jpg);
+    height: 154px;
+    width: 268px;
+}

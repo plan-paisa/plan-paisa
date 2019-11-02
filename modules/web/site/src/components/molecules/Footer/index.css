@@ -1,0 +1,11 @@
+.footer-logo {
+    background: url(./images/logo.png);
+    height: 40px;
+    width: 168px;
+}
+
+.footer-news {
+    background: url(./images/news.jpg);
+    height: 65px !important;
+    width: 70px;
+}

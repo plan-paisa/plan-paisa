@@ -1,0 +1,34 @@
+{
+    "services": [
+        {
+            "title": "Financial Planning",
+            "description": "Get personalised financial strategies that understand your needs at every walk of life",
+            "className": "img-financial-planning-service"
+        },
+        {
+            "title": "Tax Planning",
+            "description": "Redude your tax liabilities by making best use of available exemptions and rebates",
+            "className": "img-tax-planning-service"
+        },
+        {
+            "title": "Insurance Consultancy",
+            "description": "Get the right coverage for your loved ones at the right cost, avoid paying unnecessary premiums",
+            "className": "img-insurance-consultancy-service"
+        },
+        {
+            "title": "Retirement Planning",
+            "description": "Be financially free way even before you retire. Start early and live your golden years gracefully",
+            "className": "img-retirement-planning-service"
+        },
+        {
+            "title": "Investment Advice",
+            "description": "Be certain to maximise your returns in this uncertain world",
+            "className": "img-financial-planning-service"
+        },
+        {
+            "title": "Estate Planning",
+            "description": "We let you optimise transfer of your wealth in your absence",
+            "className": "img-retirement-planning-service"
+        }
+    ]
+}

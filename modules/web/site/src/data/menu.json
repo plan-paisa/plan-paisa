@@ -1,0 +1,24 @@
+{
+    "menus": [
+        {
+            "name": "Home",
+            "hash": "/"
+        },
+        {
+            "name": "About Us",
+            "hash": "/about-us"
+        },
+        {
+            "name": "Services",
+            "hash": "/services"
+        },
+        {
+            "name": "Blogs",
+            "hash": "/blogs"
+        },
+        {
+            "name": "Contact Us",
+            "hash": "/contact-us"
+        }
+    ]
+}

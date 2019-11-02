@@ -45,7 +45,7 @@ cdk-synth: nuke-cdk
 cdk-diff:
 	cd infrastructure && cdk diff || :
 
-deploy: cdk-bootstrap
+deploy: nuke-cdk cdk-bootstrap
 	cd infrastructure && \
 		cdk deploy '*' \
 		--toolkit-stack-name ${CDK_TOOLKIT_STACK_NAME} \
@@ -92,3 +92,5 @@ package:
 	cd modules/web/site && npm run build
 	
 pipeline: install package deploy
+	
+pd: package deploy

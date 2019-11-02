@@ -1,0 +1,22 @@
+{
+    "facts": [
+        {
+            "statedBy": "",
+            "summary": "Do you know the total assets under management by Mutual fund houses in India is 25 lakh crores, an increase of 500% in last 10 years",
+            "category": "Marketing",
+            "className": "img-fact-1"
+        },
+        {
+            "statedBy": "Jack Hughman",
+            "summary": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+            "category": "Marketing",
+            "className": "img-fact-1"
+        },
+        {
+            "statedBy": "Jack Hughman",
+            "summary": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#39;t look even slightly believable. If you are going to use a passage of Lorem Ipsum",
+            "category": "Marketing",
+            "className": "img-fact-1"
+        }
+    ]
+}
